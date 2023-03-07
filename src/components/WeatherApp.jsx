@@ -13,10 +13,11 @@ const WeatherApp = () => {
   console.log("11111111111111111111111111111" + units);
   return (
     <div className="container">
-      <div>
-        Coded by <a>Anna Lavrenova</a>
-        <br />
-        <a href="">GitHub source</a>
+      <div style={{ marginBottom: 1 + "rem" }}>
+        Coded by Anna Lavrenova,{" "}
+        <a href="https://github.com/Anna2049/react-totoro-weather">
+          GitHub source
+        </a>
       </div>
       <div className="ControlsBar">
         <ButtonSettings />

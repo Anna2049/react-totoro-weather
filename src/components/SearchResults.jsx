@@ -14,8 +14,14 @@ const SearchResults = (props) => {
           locationName={props.locationName}
           updateUnits={props.updateUnits}
         />
-        <WeatherForecastHourly data={props.data.hourly} units={props.units} />
-        <WeatherForecastDaily data={props.data.daily} units={props.units} />
+        <WeatherForecastHourly
+          data={props.data.hourly.slice(1)}
+          units={props.units}
+        />
+        <WeatherForecastDaily
+          data={props.data.daily.slice(1)}
+          units={props.units}
+        />
       </div>
     );
   } else {
