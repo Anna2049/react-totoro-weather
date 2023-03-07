@@ -33,8 +33,8 @@ const MainTemperature = (props) => {
     <div className="temperature">
       <div>
         {tempUnits === "metric"
-          ? props.temperature
-          : props.temperature * 1.8 + 32}
+          ? Math.round(props.valueTemperature)
+          : Math.round(props.valueTemperature * 1.8 + 32)}
       </div>
       <div className="ci-units">
         °<Switcher />
@@ -169,7 +169,7 @@ const WeatherCurrent = (props) => {
         updateUnits={props.updateUnits}
         descr={props.data.weather[0].description}
         locationName={props.locationName}
-        temperature={Math.round(props.data.temp)}
+        temperature={props.data.temp}
         unixstamp={props.data.dt * 1000}
       />
       <CurrentIndices data={props.data} units={props.units} />
