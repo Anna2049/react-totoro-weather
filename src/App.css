@@ -1,38 +1,164 @@
+:root {
+  --font-color: black;
+}
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
 .App {
+  padding: 1rem;
+}
+.ControlsBar {
+  line-height: 1;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  text-align: justify;
+  justify-content: space-between;
+}
+.ControlsBar > * {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+.ControlsBar svg {
+  vertical-align: middle;
+}
+.ControlsBar > .ButtonGPS,
+.ControlsBar > .ButtonSettings {
+  font-size: 1.5rem;
+  padding: 0 0.3rem;
+}
+.ControlsBar > :nth-child(3) {
+  width: 80%;
+}
+@media (min-width: 0) {
+}
+@media (min-width: 912px) {
+  .App {
+    max-width: 30vw;
+    margin: 0 auto;
+    background-color: antiquewhite;
+  }
+}
+.WeatherCurrent .MainInfo,
+.WeatherCurrent .CurrentIndices {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.MainInfo {
+  line-height: 1.1;
+}
+.MainInfo a {
+  text-decoration: none;
+}
+.MainInfo .temperature {
+  font-weight: 600;
+  position: relative;
+  display: inline-flex;
+}
+.MainInfo .temperature > :first-child {
+  font-size: 5rem;
+}
+.MainInfo .temperature > :nth-child(2) {
+  font-size: 1.5rem;
+  position: relative;
+  top: 20px;
+}
+.MainInfo .location {
+  font-size: 2.5rem;
+}
+.MainInfo .weather-description {
+  font-size: 1.5rem;
+}
+.CurrentIndices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "CI-feelslike CI-pressure"
+    "CI-humidity CI-clouds"
+    "CI-wind CI-uvi"
+    "CI-sunrise CI-sunset";
+  padding: 1rem 0;
+}
+.CurrentIndices .ci-temp {
+  grid-area: CI-temp;
+}
+.CurrentIndices .ci-uvindex {
+  grid-area: CI-uvi;
+}
+.CurrentIndices .ci-humidity {
+  grid-area: CI-humidity;
+}
+.CurrentIndices .ci-feelslike {
+  grid-area: CI-feelslike;
+}
+.CurrentIndices .ci-pressure {
+  grid-area: CI-pressure;
+}
+.CurrentIndices .ci-clouds {
+  grid-area: CI-clouds;
+}
+.CurrentIndices .ci-pressure {
+  grid-area: CI-wind;
+}
+.CurrentIndices .ci-sunrise {
+  grid-area: CI-sunrise;
+}
+.CurrentIndices .ci-sunset {
+  grid-area: "CI-sunset";
+}
+.CurrentIndices > div {
+  display: flex;
+}
+.CurrentIndices > :not(.ci-temp) .ci-icon {
+  font-size: larger;
+}
+.CurrentIndices > div > * {
+  min-width: 33%;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.WeatherForecastHourly h3,
+.WeatherForecastDaily h3 {
+  text-align: center;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.forecast-scroll {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.forecast-scroll button {
+  background: transparent;
+  padding: 0;
+  border: none;
+  font-size: 1rem;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.forecast-scroll .scrolling-wrapper {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow-x: scroll;
+  white-space: nowrap;
+  display: flex;
+  text-align: center;
+}
+.forecast-scroll .scrolling-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.CurrentIndices,
+.forecast-scroll-card {
+  background-color: rgba(203, 207, 207, 0.6);
+  border-radius: 5px;
+}
+.forecast-scroll-card {
+  min-width: 15%;
+  margin-right: 0.2rem;
+  padding: 0.5rem 0;
+}
+.forecast-scroll-card > * {
+  margin: 0;
+}
+.forecast-scroll-card img {
+  display: block;
+  max-width: 80%;
+  margin: auto;
 }
