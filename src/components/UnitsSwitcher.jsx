@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
 const UnitsSwitcher = (props) => {
-  const [units, setUnits] = useState(props.units);
+  const [tempUnits, setTempUnits] = useState(props.units);
   function updateAppUnits(event) {
     event.preventDefault();
     const setAppUnits = props.updateUnits;
-    const selecteUnits = event.target.getAttribute("value");
-    setUnits(selecteUnits);
-    setAppUnits(selecteUnits);
-    console.log("3333333333333333333333333333" + selecteUnits);
+    const switchUnits = event.target.getAttribute("value");
+    setTempUnits(switchUnits);
+    setAppUnits(switchUnits);
+    console.log("3333333333333333333333333333" + switchUnits);
   }
-  if (units === "imperial") {
+  if (tempUnits === "imperial") {
     return (
       <span className="UnitsSwitcher">
         F |{" "}

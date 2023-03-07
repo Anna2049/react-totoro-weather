@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -67,3 +68,4 @@ class GoogleSearch extends React.Component {
 }
 
 export default GoogleSearch;
+*/

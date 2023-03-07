@@ -1,16 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "@iconify/react";
-import UnitsSwitcher from "./UnitsSwitcher";
 
+const MainTemperature = (props) => {
+  const [tempUnits, setTempUnits] = useState(props.units);
+  function updateTempUnits(event) {
+    event.preventDefault();
+    const switchUnits = event.target.getAttribute("value");
+    setTempUnits(switchUnits);
+  }
+  const Switcher = () => {
+    if (tempUnits === "imperial") {
+      return (
+        <span className="UnitsSwitcher">
+          F |{" "}
+          <a href="/" value="metric" onClick={updateTempUnits}>
+            C
+          </a>
+        </span>
+      );
+    } else {
+      return (
+        <span className="UnitsSwitcher">
+          C |{" "}
+          <a href="/" value="imperial" onClick={updateTempUnits}>
+            F
+          </a>
+        </span>
+      );
+    }
+  };
+  return (
+    <div className="temperature">
+      <div>
+        {tempUnits === "metric"
+          ? props.temperature
+          : props.temperature * 1.8 + 32}
+      </div>
+      <div className="ci-units">
+        °<Switcher />
+      </div>
+    </div>
+  );
+};
 const MainInfo = (props) => {
   return (
     <div className="MainInfo">
-      <div className="temperature">
-        <div>{props.temperature}</div>
-        <div className="ci-units">
-          °<UnitsSwitcher units={props.units} updateUnits={props.updateUnits} />
-        </div>
-      </div>
+      <MainTemperature
+        units={props.units}
+        valueTemperature={props.temperature}
+      />
       <div className="location">{props.locationName}</div>
       <div className="weather-description">{props.descr}</div>
       <p className="datetime">

@@ -1,3 +1,4 @@
+/*
 import React, { useState } from "react";
 import axios from "axios";
 import GooglePlacesAutocomplete, {
@@ -1557,7 +1558,7 @@ const SearchEngine = (props) => {
     console.log(url);
     setWeatherDataCurrent(currentData);
     setWeatherDataForecast(forecastData);
-    /*
+    
     axios
       .get(url)
       .then((response) => {
@@ -1567,7 +1568,7 @@ const SearchEngine = (props) => {
         console.error(error);
         setWeatherDataForecast(null);
       });
-      */
+      
   }
   return (
     <GooglePlacesAutocomplete
@@ -1585,3 +1586,4 @@ const SearchEngine = (props) => {
 };
 
 export default SearchEngine;
+*/
