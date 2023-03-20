@@ -118,6 +118,10 @@
   min-width: 80%;
 }
 @media (min-width: 0) {
+  .App,
+  .Background {
+    width: 100vw;
+  }
 }
 @media (min-width: 912px) {
   .App,
