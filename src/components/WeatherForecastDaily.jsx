@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "@iconify/react";
+import ButtonScroll from "./ButtonScroll";
 
 const ItemDailyBrief = (props) => {
   return (
@@ -20,19 +20,11 @@ const ItemDailyBrief = (props) => {
   );
 };
 const WeatherForecastDaily = (props) => {
-  console.log(props.data);
-  props.data.forEach(function (hour) {
-    //console.log(hour.dt);
-  });
-  console.log("Rendering: SearchResults / WeatherForecastDaily");
-  console.log(props.data);
   return (
     <div className="WeatherForecastDaily">
       <h3>Week: Brief | Detailed</h3>
-      <div className="forecast-scroll">
-        <button className="btn-scroll scroll-left">
-          <Icon icon="bx:left-arrow" />
-        </button>
+      <div className="container-scroll forecast-scroll">
+        <ButtonScroll direction="left" />
         <div className="scrolling-wrapper">
           {props.data.map(function (hour, index) {
             return (
@@ -53,9 +45,7 @@ const WeatherForecastDaily = (props) => {
             );
           })}
         </div>
-        <button className="btn-scroll scroll-right">
-          <Icon icon="bx:right-arrow" />
-        </button>
+        <ButtonScroll direction="right" />
       </div>
     </div>
   );

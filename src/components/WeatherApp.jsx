@@ -6,34 +6,36 @@ import SearchResults from "./SearchResults";
 
 const WeatherApp = () => {
   const [units, setUnits] = useState("metric");
-  const [coordinates, setCoordinates] = useState(null);
+  const [theme, setTheme] = useState("nature");
   const [location, setLocation] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
-  console.log(coordinates);
-  console.log("11111111111111111111111111111" + units);
+  console.log(location);
+  //console.log(coordinates);
+  //console.log(units);
+  //console.log(theme);
+  //console.log(weatherData);
   return (
-    <div className="container">
-      <div style={{ marginBottom: 1 + "rem" }}>
-        Coded by Anna Lavrenova,{" "}
-        <a href="https://github.com/Anna2049/react-totoro-weather">
-          GitHub source
-        </a>
-      </div>
+    <div className="container" style={{ marginTop: 1 + "rem" }}>
       <div className="ControlsBar">
-        <ButtonSettings />
-        <ButtonGPS updateCoordinates={setCoordinates} />
+        <ButtonSettings
+          units={units}
+          updateUnits={setUnits}
+          theme={theme}
+          updateTheme={setTheme}
+        />
+        <ButtonGPS />
         <SearchEngine
           units={units}
-          updateCoordinates={setCoordinates}
           updateLocation={setLocation}
           updateWeatherData={setWeatherData}
         />
       </div>
       <SearchResults
-        locationName={location}
+        location={location}
         units={units}
         updateUnits={setUnits}
         data={weatherData}
+        theme={theme}
       />
     </div>
   );

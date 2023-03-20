@@ -54,9 +54,9 @@ const MainInfo = (props) => {
       <p className="datetime">
         Last updated:{" "}
         {new Date(props.unixstamp).toLocaleString("en-US", {
-          weekday: "long",
+          weekday: "short",
           year: "numeric",
-          month: "long",
+          month: "short",
           day: "numeric",
           hour: "2-digit",
           minute: "2-digit",
@@ -71,7 +71,6 @@ const WindDirection = (props) => {
   return <span> {directions[Math.round(props.degrees / 45) % 8]}</span>;
 };
 const CurrentIndices = (props) => {
-  console.log(props);
   /*
       <div className="ci-temp">
         <div className="ci-icon">
@@ -160,8 +159,6 @@ const CurrentIndices = (props) => {
 };
 
 const WeatherCurrent = (props) => {
-  console.log("Rendering: SearchResults / CurrentWeather");
-  console.log(props.data);
   return (
     <div className="WeatherCurrent">
       <MainInfo

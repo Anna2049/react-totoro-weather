@@ -7,46 +7,123 @@
   box-sizing: border-box;
 }
 .App {
-  padding: 1rem;
+  margin: 0 auto;
+}
+.App a,
+.App a:visited {
+  color: inherit;
+}
+.App button {
+  cursor: pointer;
+}
+.App > .container > :last-child {
+  margin-bottom: 2rem;
+}
+.offcanvas {
+  font-size: smaller;
+}
+.offcanvas svg {
+  font-size: x-large;
+}
+.offcanvas .visuals-explanation {
+  display: flex;
+  flex-wrap: wrap;
+}
+.offcanvas .visuals-explanation > * {
+  align-items: center;
+  width: 50%;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: "visual-el visual-descr";
+}
+
+.offcanvas .visuals-explanation .visual-el {
+  grid-area: visual-el;
+  text-align: center;
+}
+.offcanvas .visuals-explanation img {
+  width: 2.5rem;
+  margin: -0.5rem;
+  filter: drop-shadow(2px 1px 4px black);
+}
+.offcanvas .visuals-explanation img[alt^="ow-img-09"],
+.offcanvas .visuals-explanation img[alt^="ow-img-10"],
+.offcanvas .visuals-explanation img[alt^="ow-img-13"] {
+  width: 3rem;
+}
+
+.offcanvas footer > * {
+  display: block;
+  text-align: center;
+  align-items: center;
+}
+.offcanvas footer img {
+  width: 20%;
+  margin: 1rem auto 0 auto;
+}
+.offcanvas .visuals-explanation .visual-descr {
+  grid-area: visual-descr;
+}
+.ControlsBar,
+.SearchResults .WeatherCurrent {
+  margin: 0 1.5rem;
+}
+.SearchResults .ButtonScroll svg {
+  display: block;
+  width: 1.5rem;
+}
+.SearchResults.theme-dark {
+  color: white;
+  text-shadow: 2px 1px 4px black;
+}
+.SearchResults.theme-dark svg {
+  color: white;
+  filter: drop-shadow(2px 1px 4px black);
+}
+.Background {
+  position: fixed;
+  margin: 0;
+  top: 0;
+  z-index: -2;
+  height: 100vh;
+  width: inherit;
+}
+.Background img {
+  display: block;
+  height: inherit;
+  width: inherit;
 }
 .ControlsBar {
   line-height: 1;
-  position: relative;
   display: flex;
-  flex-wrap: wrap;
   align-items: stretch;
-  width: 100%;
   text-align: justify;
   justify-content: space-between;
 }
 .ControlsBar > * {
   border: 1px solid lightgray;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 .ControlsBar svg {
   vertical-align: middle;
 }
+
 .ControlsBar > .ButtonGPS,
 .ControlsBar > .ButtonSettings {
   font-size: 1.5rem;
   padding: 0 0.3rem;
+  background-color: transparent;
 }
 .ControlsBar > :nth-child(3) {
-  width: 80%;
+  min-width: 80%;
 }
 @media (min-width: 0) {
 }
 @media (min-width: 912px) {
-  .App {
-    max-width: 30vw;
-    margin: 0 auto;
-    background-color: antiquewhite;
+  .App,
+  .Background {
+    width: 30vw;
   }
-}
-.WeatherCurrent .MainInfo,
-.WeatherCurrent .CurrentIndices {
-  margin-left: 1rem;
-  margin-right: 1rem;
 }
 .MainInfo {
   line-height: 1.1;
@@ -110,6 +187,10 @@
 .CurrentIndices .ci-sunset {
   grid-area: "CI-sunset";
 }
+.ci-sunrise > .ci-result,
+.ci-sunset > .ci-result {
+  text-align: center;
+}
 .CurrentIndices > div {
   display: flex;
 }
@@ -119,6 +200,14 @@
 .CurrentIndices > div > * {
   min-width: 33%;
   text-align: center;
+}
+.SearchResults .divider-image {
+  display: block;
+  opacity: 80%;
+  width: 100%;
+  z-index: -1;
+  margin-top: 1rem;
+  margin-bottom: -1rem;
 }
 .WeatherForecastHourly h3,
 .WeatherForecastDaily h3 {
@@ -137,6 +226,7 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   overflow-x: scroll;
+  scroll-behavior: smooth;
   white-space: nowrap;
   display: flex;
   text-align: center;
@@ -151,7 +241,7 @@
 }
 .forecast-scroll-card {
   min-width: 15%;
-  margin-right: 0.2rem;
+  margin-right: 0.5rem;
   padding: 0.5rem 0;
 }
 .forecast-scroll-card > * {
@@ -161,4 +251,106 @@
   display: block;
   max-width: 80%;
   margin: auto;
+}
+
+/* Bootstrap styles */
+.fade {
+  transition: opacity 0.15s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade {
+    transition: none;
+  }
+}
+.fade:not(.show) {
+  opacity: 0;
+}
+button.btn-close {
+  cursor: pointer;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0.25em 0.25em;
+  border: 0;
+  opacity: 0.5;
+  background-repeat: no-repeat;
+  background: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23000%27%3e%3cpath d=%27M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z%27/%3e%3c/svg%3e");
+}
+.offcanvas-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+}
+.offcanvas-backdrop.show {
+  opacity: 0.5;
+}
+.offcanvas {
+  position: fixed;
+  bottom: 0;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  visibility: hidden;
+  background-color: #fff;
+  background-clip: padding-box;
+  outline: 0;
+  transition: transform 0.3s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .offcanvas {
+    transition: none;
+  }
+}
+.offcanvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+}
+.offcanvas-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+.offcanvas-body {
+  flex-grow: 1;
+  padding: 1rem 1rem;
+  overflow-y: auto;
+}
+.offcanvas-start {
+  top: 0;
+  left: 0;
+  width: 400px;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  transform: translateX(-100%);
+}
+.offcanvas-end {
+  top: 0;
+  right: 0;
+  width: 400px;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  transform: translateX(100%);
+}
+.offcanvas-top {
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 30vh;
+  max-height: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  transform: translateY(-100%);
+}
+.offcanvas-bottom {
+  right: 0;
+  left: 0;
+  height: 30vh;
+  max-height: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  transform: translateY(100%);
+}
+.offcanvas.show {
+  transform: none;
 }
