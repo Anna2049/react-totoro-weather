@@ -3,7 +3,6 @@ import { Icon } from "@iconify/react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import DescriptionImagesOW from "./DescriptionImagesOW";
 import DescriptionIcons from "./DescriptionIcons";
-import SearchEngine from "./SearchEngine";
 
 const ButtonSettings = (props) => {
   const [show, setShow] = useState(false);
@@ -11,20 +10,22 @@ const ButtonSettings = (props) => {
   const handleShow = () => setShow(true);
 
   const Settings = () => {
+    /*
     const [units, setUnits] = useState(props.units);
     const [theme, setTheme] = useState(props.theme);
-    console.log("CHANGE");
     function updateUnits(value) {
       setUnits(value);
     }
     function updateTheme(value) {
       setTheme(value);
     }
+    */
+    console.log("RENDER");
     return (
       <div className="Settings">
         Theme:
         <select
-          value={theme}
+          value={props.theme}
           className=""
           onChange={(event) => props.updateTheme(event.target.value)}
         >
@@ -39,7 +40,7 @@ const ButtonSettings = (props) => {
         </select>
         Units:
         <select
-          value={units}
+          value={props.units}
           className=""
           onChange={(event) => props.updateUnits(event.target.value)}
         >
