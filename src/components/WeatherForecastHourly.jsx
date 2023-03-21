@@ -27,7 +27,6 @@ const TileHourly = (props) => {
   );
 };
 const WeatherForecastHourly = (props) => {
-  const unitTemp = props.units === "metric" ? "°С" : "°F";
   return (
     <div className="WeatherForecastHourly">
       <h3>Hourly: 48 hours</h3>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ButtonSettings from "./ButtonSettings";
-import ButtonGPS from "./ButtonGPS";
+//import ButtonGPS from "./ButtonGPS";
 import SearchEngine from "./SearchEngine";
 import SearchResults from "./SearchResults";
 

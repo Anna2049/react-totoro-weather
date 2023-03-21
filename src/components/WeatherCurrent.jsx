@@ -89,7 +89,7 @@ const CurrentIndices = (props) => {
         <div className="ci-icon">
           <Icon icon="mdi:barometer" />
         </div>
-        <div className="ci-result">{"1007"}</div>
+        <div className="ci-result">{props.data.pressure}</div>
         <div className="ci-units">{"hPa"}</div>
       </div>
       <div className="ci-clouds">
@@ -111,7 +111,7 @@ const CurrentIndices = (props) => {
           <Icon icon="bx:wind" />
         </div>
         <div className="ci-result">
-          {Math.round(props.data.wind_speed)}
+          {valueSpeed(props.data.wind_speed)}
           <WindDirection degrees={props.data.wind_deg} />
         </div>
         <div className="ci-units">{unitSpeed}</div>
