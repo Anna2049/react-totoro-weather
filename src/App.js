@@ -13,6 +13,9 @@ function App() {
       const savedPreferences = localStorage.getItem("TotoroWeatherApp")
         ? JSON.parse(localStorage.getItem("TotoroWeatherApp"))
         : null;
+      if (!savedPreferences) {
+        localStorage.setItem("TotoroWeatherApp", JSON.stringify({}));
+      }
       const units =
         savedPreferences && savedPreferences.units
           ? savedPreferences.units
@@ -39,7 +42,6 @@ function App() {
           location.coords.lng
         }&units=${"metric"}` +
         `&exclude=minutely&appid=${keyOpenWeather}`;
-      console.log(url);
       const weather = await axios.get(url);
       setPreferences({
         units: units,
