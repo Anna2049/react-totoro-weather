@@ -56,7 +56,7 @@ function App() {
           <div className="BackgroundLoader">
             <img
               className="Loader"
-              src={window.location.origin + "/images/" + "loader-toto2.gif"}
+              src={`${window.location.origin}/images/loader-toto2.gif`}
               alt="background-theme"
             />
             <div className="loader-text">Loading...</div>
