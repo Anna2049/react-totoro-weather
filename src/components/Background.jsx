@@ -5,6 +5,7 @@ const Background = (props) => {
   const imagePath = {
     nature: "/images/themes/nature/",
     city: "/images/themes/city/",
+    minimalistic: "/images/themes/minimalistic/",
     none: "/images/",
   };
   const imageName = (function () {

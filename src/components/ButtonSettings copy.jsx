@@ -1,45 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { Icon } from "@iconify/react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import DescriptionImagesOW from "./DescriptionImagesOW";
 import DescriptionIcons from "./DescriptionIcons";
 
-const ButtonSettings = (props) => {
+const ButtonSettings = memo(function Settings({
+  updateAppUnits,
+  updateAppTheme,
+}) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  function updatePreferences(key, value) {
-    let preferences = JSON.parse(localStorage.getItem("TotoroWeatherApp"));
-    preferences[key] = value;
-    localStorage.setItem("TotoroWeatherApp", JSON.stringify(preferences));
-  }
-  function updateUnits(value) {
-    props.updateUnits(value);
-    updatePreferences("units", value);
-  }
-  function updateTheme(value) {
-    props.updateTheme(value);
-    updatePreferences("theme", value);
-  }
-  const Settings = () => {
+
+  const Settings = memo(function Settings() {
+    console.log("FUCK");
+    function updatePreferences(key, value) {
+      let preferences = JSON.parse(localStorage.getItem("TotoroWeatherApp"));
+      preferences[key] = value;
+      localStorage.setItem("TotoroWeatherApp", JSON.stringify(preferences));
+    }
+    function updateUnits(value) {
+      updateAppUnits(value);
+      updatePreferences("units", value);
+    }
+    function updateTheme(value) {
+      updateAppTheme(value);
+      updatePreferences("theme", value);
+    }
     return (
       <div className="Settings">
         <div>
           <label htmlFor="preference-theme">Theme preference : </label>
           <select
-            defaultValue={props.theme}
+            defaultValue={"minimalistic"}
             id="preference-theme"
             onChange={(event) => updateTheme(event.target.value)}
           >
             <option value="nature">Nature</option>
             <option value="city">City</option>
-            {/*<option value="minimalistic">Minimalistic</option>*/}
+            <option value="minimalistic">Minimalistic</option>
           </select>
         </div>
         <div>
           <label htmlFor="preference-units">Units preference : </label>
           <select
-            defaultValue={props.units}
+            defaultValue={"imperial"}
             id="preference-units"
             onChange={(event) => updateUnits(event.target.value)}
           >
@@ -47,9 +52,17 @@ const ButtonSettings = (props) => {
             <option value="imperial">Imperial</option>
           </select>
         </div>
+        <div style={{ textAlign: "right" }}>
+          <small>
+            <i>units are applied with next search</i>
+          </small>
+        </div>
+        <br />
+        Saved location:
       </div>
     );
-  };
+  });
+
   return (
     <>
       <button type="button" className="ButtonSettings" onClick={handleShow}>
@@ -95,6 +108,6 @@ const ButtonSettings = (props) => {
       </Offcanvas>
     </>
   );
-};
+});
 
 export default ButtonSettings;

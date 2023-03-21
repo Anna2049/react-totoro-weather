@@ -3,7 +3,7 @@ import Autocomplete from "react-google-autocomplete";
 import axios from "axios";
 
 const SearchEngine = (props) => {
-  const units = props.units;
+  const units = "metric"; //props.units;
   const updateLocation = props.updateLocation;
   function getOpenWeatherData(coords) {
     console.log("Sending request to OpenWeather...");
@@ -30,14 +30,17 @@ const SearchEngine = (props) => {
     const location = {
       name_short: googlePlaceObj.address_components[0].long_name,
       address: googlePlaceObj.formatted_address,
-      country: googlePlaceObj.address_components.find(
-        (item) => item.types.includes("country").long_name
-      ),
+      country: googlePlaceObj.address_components.find((item) =>
+        item.types.includes("country")
+      ).long_name,
       coords: {
         lat: googlePlaceObj.geometry.location.lat(),
         lng: googlePlaceObj.geometry.location.lng(),
       },
     };
+    let savedPreferences = JSON.parse(localStorage.getItem("TotoroWeatherApp"));
+    savedPreferences.location = location;
+    localStorage.setItem("TotoroWeatherApp", JSON.stringify(savedPreferences));
     updateLocation(location);
     getOpenWeatherData(location.coords);
   }

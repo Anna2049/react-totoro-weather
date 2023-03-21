@@ -6,7 +6,6 @@ import Background from "./Background";
 
 const SearchResults = (props) => {
   if (props.data) {
-    console.log(props.data);
     const tsCurrent = new Date().getTime();
     const tsSunset = props.data.current.sunset * 1000;
     const tsSunrise = props.data.current.sunrise * 1000;
@@ -46,7 +45,6 @@ const SearchResults = (props) => {
           data={props.data.current}
           units={props.units}
           locationName={props.location.name_short}
-          updateUnits={props.updateUnits}
         />
         <WeatherForecastHourly
           data={props.data.hourly.slice(1)}

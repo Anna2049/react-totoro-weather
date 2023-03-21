@@ -7,7 +7,7 @@ const ButtonGPS = (props) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(saveLocation);
     } else {
-      alert("No GPS Functionality.");
+      alert("No Geolocation Functionality.");
     }
   }
   function saveLocation(position) {

@@ -2,6 +2,14 @@ import React from "react";
 import ButtonScroll from "./ButtonScroll";
 
 const ItemDailyBrief = (props) => {
+  const unitTemp = props.units === "metric" ? "°С" : "°F";
+  const valueTemp = function (value) {
+    if (props.units === "imperial") {
+      return Math.round(value * 1.8 + 32);
+    } else {
+      return Math.round(value);
+    }
+  };
   return (
     <div className="forecast-scroll-card">
       <small>{props.weekday}</small>
@@ -11,10 +19,12 @@ const ItemDailyBrief = (props) => {
         alt="weather-icon"
       />
       <p>
-        {props.tempMax}°<span className="unit-temp">{"С"}</span>
+        {valueTemp(props.tempMax)}
+        <span className="unit-temp">{unitTemp}</span>
       </p>
       <p>
-        {props.tempMin}°<span className="unit-temp">{"С"}</span>
+        {valueTemp(props.tempMin)}
+        <span className="unit-temp">{unitTemp}</span>
       </p>
     </div>
   );
@@ -22,7 +32,7 @@ const ItemDailyBrief = (props) => {
 const WeatherForecastDaily = (props) => {
   return (
     <div className="WeatherForecastDaily">
-      <h3>Week: Brief | Detailed</h3>
+      <h3>7 Day Forecast</h3>
       <div className="container-scroll forecast-scroll">
         <ButtonScroll direction="left" />
         <div className="scrolling-wrapper">
@@ -30,6 +40,7 @@ const WeatherForecastDaily = (props) => {
             return (
               <ItemDailyBrief
                 key={index}
+                units={props.units}
                 weekday={new Date(hour.dt * 1000).toLocaleString([], {
                   weekday: "short",
                 })}

@@ -4,16 +4,13 @@ import ButtonGPS from "./ButtonGPS";
 import SearchEngine from "./SearchEngine";
 import SearchResults from "./SearchResults";
 
-const WeatherApp = () => {
-  const [units, setUnits] = useState("metric");
-  const [theme, setTheme] = useState("nature");
-  const [location, setLocation] = useState(null);
-  const [weatherData, setWeatherData] = useState(null);
-  console.log(location);
-  //console.log(coordinates);
-  //console.log(units);
-  //console.log(theme);
-  //console.log(weatherData);
+const WeatherApp = (props) => {
+  //console.log(props.preferences);
+  //console.log(props.weatherData);
+  const [units, setUnits] = useState(props.preferences.units);
+  const [theme, setTheme] = useState(props.preferences.theme);
+  const [location, setLocation] = useState(props.preferences.location);
+  const [weatherData, setWeatherData] = useState(props.weatherData);
   return (
     <div className="container" style={{ marginTop: 1 + "rem" }}>
       <div className="ControlsBar">
@@ -23,7 +20,7 @@ const WeatherApp = () => {
           theme={theme}
           updateTheme={setTheme}
         />
-        <ButtonGPS />
+        {/*<ButtonGPS />*/}
         <SearchEngine
           units={units}
           updateLocation={setLocation}
@@ -33,7 +30,6 @@ const WeatherApp = () => {
       <SearchResults
         location={location}
         units={units}
-        updateUnits={setUnits}
         data={weatherData}
         theme={theme}
       />

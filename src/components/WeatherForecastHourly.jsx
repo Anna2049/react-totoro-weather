@@ -2,6 +2,14 @@ import React from "react";
 import ButtonScroll from "./ButtonScroll";
 
 const TileHourly = (props) => {
+  const unitTemp = props.units === "metric" ? "°С" : "°F";
+  const valueTemp = function (value) {
+    if (props.units === "imperial") {
+      return Math.round(value * 1.8 + 32);
+    } else {
+      return Math.round(value);
+    }
+  };
   return (
     <div className="forecast-scroll-card">
       <small>{props.weekday}</small>
@@ -12,12 +20,14 @@ const TileHourly = (props) => {
         alt="weather-icon"
       />
       <p>
-        {props.temperature}°<span className="unit-temp">{"С"}</span>
+        {valueTemp(props.temperature)}
+        <span className="unit-temp">{unitTemp}</span>
       </p>
     </div>
   );
 };
 const WeatherForecastHourly = (props) => {
+  const unitTemp = props.units === "metric" ? "°С" : "°F";
   return (
     <div className="WeatherForecastHourly">
       <h3>Hourly: 48 hours</h3>
@@ -28,6 +38,7 @@ const WeatherForecastHourly = (props) => {
             return (
               <TileHourly
                 key={index}
+                units={props.units}
                 weekday={new Date(hour.dt * 1000).toLocaleString([], {
                   weekday: "short",
                 })}

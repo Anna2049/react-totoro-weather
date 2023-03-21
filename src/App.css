@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P");
 :root {
   --font-color: black;
 }
@@ -21,6 +23,12 @@
 }
 .offcanvas {
   font-size: smaller;
+}
+.offcanvas .Settings > * > :is(label, select) {
+  display: inline-block;
+  width: 50%;
+  padding: 0.3rem;
+  margin-bottom: 0.5rem;
 }
 .offcanvas svg {
   font-size: x-large;
@@ -72,6 +80,9 @@
   display: block;
   width: 1.5rem;
 }
+.SearchResults {
+  text-shadow: 2px 1px 3px white;
+}
 .SearchResults.theme-dark {
   color: white;
   text-shadow: 2px 1px 4px black;
@@ -80,7 +91,34 @@
   color: white;
   filter: drop-shadow(2px 1px 4px black);
 }
-.Background {
+.BackgroundLoader {
+  text-align: center;
+  background: linear-gradient(
+    117.9deg,
+    rgb(183, 248, 193) -3.5%,
+    rgb(169, 212, 250) 53.8%,
+    rgb(148, 231, 255) 100.4%
+  );
+}
+.BackgroundLoader .loader-text {
+  font-family: "Press Start 2P", cursive;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 2px 2px whitesmoke;
+  margin-top: 65vh;
+}
+.BackgroundLoader img {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25vh;
+  margin: auto;
+}
+.Background,
+.BackgroundLoader {
   position: fixed;
   margin: 0;
   top: 0;
@@ -95,27 +133,32 @@
 }
 .ControlsBar {
   line-height: 1;
-  display: flex;
-  align-items: stretch;
-  text-align: justify;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 7fr; /*1fr 1fr 6fr;*/
+  grid-template-areas: "btnSettings inputLocation"; /*"btnSettings btnGeolocate inputLocation";*/
+  grid-gap: 0.5rem;
 }
 .ControlsBar > * {
   border: 1px solid lightgray;
   border-radius: 3px;
 }
+.ControlsBar > .ButtonSettings {
+  grid-area: btnSettings;
+}
+.ControlsBar > .ButtonGPS {
+  grid-area: btnGeolocate;
+}
+.ControlsBar > .SearchEngine {
+  grid-area: inputLocation;
+}
 .ControlsBar svg {
   vertical-align: middle;
 }
-
 .ControlsBar > .ButtonGPS,
 .ControlsBar > .ButtonSettings {
   font-size: 1.5rem;
   padding: 0 0.3rem;
   background-color: transparent;
-}
-.ControlsBar > :nth-child(3) {
-  min-width: 80%;
 }
 @media (min-width: 0) {
   .App,
@@ -137,6 +180,8 @@
 }
 .MainInfo .temperature {
   font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   position: relative;
   display: inline-flex;
 }
@@ -162,7 +207,7 @@
     "CI-humidity CI-clouds"
     "CI-wind CI-uvi"
     "CI-sunrise CI-sunset";
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 .CurrentIndices .ci-temp {
   grid-area: CI-temp;
@@ -198,8 +243,8 @@
 .CurrentIndices > div {
   display: flex;
 }
-.CurrentIndices > :not(.ci-temp) .ci-icon {
-  font-size: larger;
+.CurrentIndices svg {
+  font-size: x-large;
 }
 .CurrentIndices > div > * {
   min-width: 33%;
