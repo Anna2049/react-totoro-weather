@@ -5,10 +5,7 @@ import axios from "axios";
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [preferences, setPreferences] = useState({
-    units: "metric",
-    theme: "nature",
-  });
+  const [preferences, setPreferences] = useState({});
   const [weatherData, setWeatherData] = useState(null);
   useEffect(() => {
     const loadApp = async () => {
@@ -16,18 +13,25 @@ function App() {
       const savedPreferences = localStorage.getItem("TotoroWeatherApp")
         ? JSON.parse(localStorage.getItem("TotoroWeatherApp"))
         : null;
-      const units = savedPreferences.units ? savedPreferences.units : "metric";
-      const theme = savedPreferences.theme ? savedPreferences.theme : "nature";
-      const location = savedPreferences.location
-        ? savedPreferences.location
-        : {
-            name_short: "Kyiv",
-            address: "Kyiv, Ukraine, 02000",
-            coords: {
-              lat: 50.4501,
-              lng: 30.5234,
-            },
-          };
+      const units =
+        savedPreferences && savedPreferences.units
+          ? savedPreferences.units
+          : "metric";
+      const theme =
+        savedPreferences && savedPreferences.theme
+          ? savedPreferences.theme
+          : "nature";
+      const location =
+        savedPreferences && savedPreferences.location
+          ? savedPreferences.location
+          : {
+              name_short: "Kyiv",
+              address: "Kyiv, Ukraine, 02000",
+              coords: {
+                lat: 50.4501,
+                lng: 30.5234,
+              },
+            };
       const keyOpenWeather = "13e9496ba2a5643119025f905a5f6396";
       const url =
         "https://api.openweathermap.org/data/2.5/onecall" +
