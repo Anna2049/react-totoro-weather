@@ -5,7 +5,10 @@ import axios from "axios";
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [preferences, setPreferences] = useState({});
+  const [preferences, setPreferences] = useState({
+    units: "metric",
+    theme: "nature",
+  });
   const [weatherData, setWeatherData] = useState(null);
   useEffect(() => {
     const loadApp = async () => {
