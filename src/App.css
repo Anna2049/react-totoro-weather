@@ -118,6 +118,7 @@
   margin: auto;
 }
 .Background,
+.Clouds,
 .BackgroundLoader {
   position: fixed;
   margin: 0;
@@ -144,6 +145,36 @@
 .Background img[alt="thunder"] {
   opacity: 20%;
 }
+.Clouds {
+  display: flex;
+  max-height: 35vh;
+}
+.Clouds img {
+  animation: moveCloudsRightToLeftCloud 15s linear infinite running;
+}
+/*
+.Clouds img:nth-child(even) {
+  position: relative;
+}
+*/
+@keyframes moveCloudsRightToLeftCloud {
+  0% {
+    transform: translate(0%, 0);
+    opacity: 100%;
+  }
+  40% {
+    opacity: 90%;
+  }
+  60% {
+    opacity: 50%;
+  }
+  80% {
+    transform: translate(-80%, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
 .ControlsBar > * {
   border: 1px solid lightgray;
   border-radius: 3px;
@@ -160,11 +191,17 @@
 .ControlsBar svg {
   vertical-align: middle;
 }
+.ControlsBar > * {
+  background-color: #ffffff45;
+}
+.ControlsBar ::placeholder {
+  color: #000;
+  padding-left: 1rem;
+}
 .ControlsBar > .ButtonGPS,
 .ControlsBar > .ButtonSettings {
   font-size: 1.5rem;
   padding: 0 0.3rem;
-  background-color: transparent;
 }
 @media (min-width: 0) {
   .App,

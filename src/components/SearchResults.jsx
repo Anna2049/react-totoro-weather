@@ -40,7 +40,7 @@ const SearchResults = (props) => {
           theme={props.theme}
           timeOfTheDay={timeOfTheDay}
           substate={props.data.current.weather[0].description}
-          state={props.data.current.weather[0].Main}
+          state={props.data.current.weather[0].main}
           belowZero={props.data.temp > 0 ? true : false}
         />
         <WeatherCurrent

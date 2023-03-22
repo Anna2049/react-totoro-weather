@@ -4,10 +4,13 @@ import Rain from "./FrontLayerRain";
 import Snow from "./FrontLayerSnow";
 import Thunder from "./FrontLayerThunder";
 import Fog from "./FrontLayerFog";
+import Clouds from "./Clouds"; //combine with other layers?
 
 const FrontLayer = (props) => {
   const weatherState = props.state;
   const weatherSubState = props.substate;
+  console.log(weatherState);
+  console.log(weatherSubState);
   switch (weatherState) {
     case "Drizzle":
       return <Drizzle />;
@@ -27,9 +30,25 @@ const FrontLayer = (props) => {
     case "Ash":
       return <></>;
     case "Squall":
+      return (
+        <img
+          style={{ opacity: 0.3 }}
+          className="Background front-layer"
+          src={`${window.location.origin}/images/layers/${"tornado.gif"}`}
+          alt="clouds"
+        />
+      );
     case "Tornado":
-      return <></>;
-    default: //Clear, Clouds
+      return (
+        <img
+          className="Background front-layer"
+          src={`${window.location.origin}/images/layers/${"tornado.gif"}`}
+          alt="clouds"
+        />
+      );
+    case "Clouds":
+      return <Clouds />;
+    default: //Clear
       return <></>;
   }
 };
