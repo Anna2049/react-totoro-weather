@@ -138,6 +138,12 @@
   grid-template-areas: "btnSettings inputLocation"; /*"btnSettings btnGeolocate inputLocation";*/
   grid-gap: 0.5rem;
 }
+.Background img[alt="rain-heavy"] {
+  opacity: 50%;
+}
+.Background img[alt="thunder"] {
+  opacity: 20%;
+}
 .ControlsBar > * {
   border: 1px solid lightgray;
   border-radius: 3px;

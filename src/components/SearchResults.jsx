@@ -15,9 +15,9 @@ const SearchResults = (props) => {
       if (tsCurrent > tsSunrise && tsCurrent < tsTwilight) {
         return "day";
       } else if (tsCurrent > tsDawn && tsCurrent < tsSunrise) {
-        return "dawn";
+        return "morning";
       } else if (tsCurrent > tsTwilight && tsCurrent < tsSunset) {
-        return "twilight";
+        return "evening";
       } else {
         return "night";
       }
@@ -39,7 +39,9 @@ const SearchResults = (props) => {
         <Background
           theme={props.theme}
           timeOfTheDay={timeOfTheDay}
-          description={props.data.current.weather[0].description}
+          substate={props.data.current.weather[0].description}
+          state={props.data.current.weather[0].Main}
+          belowZero={props.data.temp > 0 ? true : false}
         />
         <WeatherCurrent
           data={props.data.current}

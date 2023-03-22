@@ -8,7 +8,7 @@ const SearchEngine = (props) => {
   const autocompleteRef = useRef(null);
 
   function getOpenWeatherData(coords) {
-    console.log("Sending request to OpenWeather...");
+    //console.log("Sending request to OpenWeather...");
     const setWeatherData = props.updateWeatherData;
     const keyOpenWeather = "13e9496ba2a5643119025f905a5f6396";
     const url =

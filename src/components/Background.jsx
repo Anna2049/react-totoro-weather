@@ -1,7 +1,9 @@
 import React from "react";
+import FrontLayer from "./FrontLayer";
 
 const Background = (props) => {
-  const weatherState = props.description;
+  const weatherState = props.state;
+  const weatherSubState = props.substate;
   const imagePath = {
     nature: "/images/themes/nature/",
     city: "/images/themes/city/",
@@ -10,44 +12,29 @@ const Background = (props) => {
   };
   const imageName = (function () {
     switch (props.timeOfTheDay) {
+      //seasons can be added based on temp
       case "day":
-        switch (weatherState) {
-          case "Clear":
-          case "Clouds":
-          case "Thunderstorm":
-          case "Drizzle":
-          case "Rain":
-          case "Snow":
-          case "Mist":
-          case "Smoke":
-          case "Haze":
-          case "Dust":
-          case "Fog":
-          case "Sand":
-          case "Ash":
-          case "Squall":
-          case "Tornado":
-          default:
-            return "day-sunny.gif";
-        }
+        return "day.gif";
       case "night":
-        return "night-clearsky.gif";
-      case "dawn":
-      case "twilight":
-        return "sunset-clearsky.gif";
+        return "night.gif";
+      case "morning":
+        return "morning.gif";
+      case "evening":
+        return "evening.gif";
       default:
         return "ghibli.jpg";
     }
   })();
-
   return (
-    <div className="Background">
-      <img
-        className="main-theme"
-        src={window.location.origin + imagePath[`${props.theme}`] + imageName}
-        alt="background-theme"
-      />
-    </div>
+    <>
+      <div className="Background main-theme">
+        <img
+          src={window.location.origin + imagePath[`${props.theme}`] + imageName}
+          alt="background-theme"
+        />
+      </div>
+      <FrontLayer state={weatherState} substate={weatherSubState} />
+    </>
   );
 };
 
