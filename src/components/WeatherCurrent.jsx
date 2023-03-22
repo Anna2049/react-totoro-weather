@@ -24,15 +24,15 @@ const MainInfo = (props) => {
       <div className="location">{props.locationName}</div>
       <div className="weather-description">{props.descr}</div>
       <p className="datetime">
-        Last updated:{" "}
-        {new Date(props.unixstamp).toLocaleString("en-US", {
+        Local time:{" "}
+        {new Date(props.unixstamp).toLocaleString([], {
+          timeZone: props.timezone,
           weekday: "short",
           year: "numeric",
           month: "short",
           day: "numeric",
           hour: "2-digit",
           minute: "2-digit",
-          hour12: false,
         })}
       </p>
     </div>
@@ -122,6 +122,7 @@ const CurrentIndices = (props) => {
         </div>
         <div className="ci-result">
           {new Date(props.data.sunrise * 1000).toLocaleTimeString([], {
+            timeZone: props.timezone,
             hour: "2-digit",
             minute: "2-digit",
           })}
@@ -133,6 +134,7 @@ const CurrentIndices = (props) => {
         </div>
         <div className="ci-result">
           {new Date(props.data.sunset * 1000).toLocaleTimeString([], {
+            timeZone: props.timezone,
             hour: "2-digit",
             minute: "2-digit",
           })}
@@ -152,8 +154,13 @@ const WeatherCurrent = (props) => {
         locationName={props.locationName}
         temperature={props.data.temp}
         unixstamp={props.data.dt * 1000}
+        timezone={props.timezone}
       />
-      <CurrentIndices data={props.data} units={props.units} />
+      <CurrentIndices
+        data={props.data}
+        units={props.units}
+        timezone={props.timezone}
+      />
     </div>
   );
 };

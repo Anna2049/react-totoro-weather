@@ -47,8 +47,10 @@ const SearchResults = (props) => {
           data={props.data.current}
           units={props.units}
           locationName={props.location.name_short}
+          timezone={props.data.timezone}
         />
         <WeatherForecastHourly
+          timezone={props.data.timezone}
           data={props.data.hourly.slice(1)}
           units={props.units}
         />

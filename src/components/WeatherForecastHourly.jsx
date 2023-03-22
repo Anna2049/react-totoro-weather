@@ -42,6 +42,7 @@ const WeatherForecastHourly = (props) => {
                   weekday: "short",
                 })}
                 time={new Date(hour.dt * 1000).toLocaleTimeString([], {
+                  timeZone: props.timezone,
                   hour: "2-digit",
                   minute: "2-digit",
                   hour12: false,

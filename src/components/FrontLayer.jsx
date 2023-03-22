@@ -9,8 +9,6 @@ import Clouds from "./Clouds"; //combine with other layers?
 const FrontLayer = (props) => {
   const weatherState = props.state;
   const weatherSubState = props.substate;
-  console.log(weatherState);
-  console.log(weatherSubState);
   switch (weatherState) {
     case "Drizzle":
       return <Drizzle />;
